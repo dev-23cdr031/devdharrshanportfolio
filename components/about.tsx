@@ -82,6 +82,7 @@ function PremiumCinematicBackground() {
           const duration = seededRandom(i + 1) * 20 + 25
           const delay = seededRandom(i + 26) * 5
           const size = seededRandom(i + 51) * 2.5 + 0.5
+          const sizePx = `${size.toFixed(3)}px`
           const colors = [
             'rgba(6, 182, 212, 0.6)',
             'rgba(14, 165, 233, 0.5)',
@@ -95,12 +96,12 @@ function PremiumCinematicBackground() {
               key={i}
               className="absolute rounded-full blur-sm"
               style={{
-                width: `${size}px`,
-                height: `${size}px`,
+                width: sizePx,
+                height: sizePx,
                 background: color,
                 left: `${seededRandom(i + 101) * 100}%`,
                 top: `${seededRandom(i + 126) * 100}%`,
-                boxShadow: `0 0 ${size * 2}px ${color}`,
+                boxShadow: `0 0 ${(size * 2).toFixed(3)}px ${color}`,
               }}
               animate={{
                 y: [0, -200, -400],
@@ -267,16 +268,16 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
       className="relative"
     >
       <motion.div
-        className="relative p-6 rounded-2xl border border-cyan-500/25 bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.12)] backdrop-blur-md overflow-hidden group dark:border-cyan-400/40 dark:bg-gradient-to-br dark:from-slate-800/70 dark:to-slate-900/80"
+        className="relative p-6 rounded-2xl border border-cyan-500/25 bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.12)] backdrop-blur-md overflow-hidden group dark:border-slate-700/80 dark:bg-slate-900/85 dark:shadow-[0_22px_60px_rgba(0,0,0,0.32)]"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         animate={{
-          y: [0, -8, 0],
+          y: [0, -3, 0],
           boxShadow: [
-            '0 20px 40px rgba(6, 182, 212, 0.1)',
-            '0 40px 80px rgba(6, 182, 212, 0.2)',
-            '0 20px 40px rgba(6, 182, 212, 0.1)',
+            '0 18px 42px rgba(15, 23, 42, 0.16)',
+            '0 24px 58px rgba(15, 23, 42, 0.22)',
+            '0 18px 42px rgba(15, 23, 42, 0.16)',
           ],
         }}
         transition={{
@@ -285,22 +286,22 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
           boxShadow: { duration: 4, repeat: Infinity, ease: 'easeInOut', type: 'tween' },
         }}
         whileHover={{
-          borderColor: 'rgba(6, 182, 212, 0.8)',
+          borderColor: 'rgba(34, 211, 238, 0.42)',
         }}
       >
         {/* Rotating Neon Ring */}
         <motion.div
-          className="absolute inset-0 rounded-2xl border-2 border-transparent bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 bg-clip-border opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+          className="absolute inset-0 rounded-2xl border border-cyan-300/20 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
           animate={{ rotate: 360 }}
           transition={{ duration: 10, repeat: Infinity, ease: 'linear', type: 'tween' }}
           style={{
-            boxShadow: 'inset 0 0 30px rgba(6, 182, 212, 0.2)',
+            boxShadow: 'inset 0 0 24px rgba(6, 182, 212, 0.08)',
           }}
         />
 
         {/* Breathing Glow Background */}
         <motion.div
-          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/10 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-all duration-500"
+          className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-500/8 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-all duration-500"
           animate={{
             opacity: [0, 0.08, 0],
             scale: [0.98, 1.02, 0.98],
@@ -312,7 +313,7 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
         <motion.div
           className="absolute inset-0 opacity-0 group-hover:opacity-100 pointer-events-none rounded-2xl"
           style={{
-            background: `radial-gradient(circle at ${shinePos.x}px ${shinePos.y}px, rgba(255,255,255,0.15) 0%, transparent 50%)`,
+            background: `radial-gradient(circle at ${shinePos.x}px ${shinePos.y}px, rgba(255,255,255,0.08) 0%, transparent 50%)`,
           }}
         />
 
@@ -363,10 +364,10 @@ function PremiumCard({
       className="group relative"
     >
       <motion.div
-        className={`relative p-4 rounded-lg border ${borderColor} ${hoverBorder} bg-white/88 shadow-[0_16px_42px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 overflow-hidden dark:bg-gradient-to-br dark:from-slate-800/50 dark:to-slate-900/60`}
+        className={`relative p-4 rounded-lg border ${borderColor} ${hoverBorder} bg-white/88 shadow-[0_16px_42px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 overflow-hidden dark:border-slate-700/70 dark:bg-slate-900/82 dark:shadow-[0_16px_45px_rgba(0,0,0,0.24)] dark:group-hover:border-cyan-400/35`}
         whileHover={{
-          y: -8,
-          boxShadow: `0 20px 40px rgba(6, 182, 212, 0.15)`,
+          y: -4,
+          boxShadow: `0 18px 42px rgba(15, 23, 42, 0.22)`,
         }}
       >
         {/* Animated Border Glow */}
@@ -375,7 +376,7 @@ function PremiumCard({
           animate={{
             boxShadow: [
               `inset 0 0 10px rgba(6, 182, 212, 0)`,
-              `inset 0 0 20px rgba(6, 182, 212, 0.2)`,
+              `inset 0 0 18px rgba(6, 182, 212, 0.08)`,
               `inset 0 0 10px rgba(6, 182, 212, 0)`,
             ],
           }}
@@ -394,7 +395,7 @@ function PremiumCard({
           whileHover={{ x: '100%' }}
           transition={{ duration: 0.7, ease: 'easeInOut' }}
           style={{
-            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)',
+            background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)',
           }}
         />
 
@@ -622,7 +623,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-cyan-300 mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2 dark:text-slate-100">
                 <motion.span
                   className="w-1 h-1 rounded-full bg-cyan-400"
                   animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
@@ -638,12 +639,12 @@ export function About() {
                   { cat: 'DevOps', items: ['Docker', 'Kubernetes', 'AWS'] },
                 ].map((group, i) => (
                   <PremiumCard key={group.cat} delay={0.15 + i * 0.08} accent="purple">
-                    <p className="text-xs font-bold text-purple-300 mb-3">{group.cat}</p>
+                    <p className="text-xs font-bold text-purple-700 mb-3 dark:text-slate-100">{group.cat}</p>
                     <div className="flex flex-wrap gap-2">
                       {group.items.map((item, idx) => (
                         <motion.span
                           key={item}
-                          className="px-2 py-1 rounded text-xs bg-purple-500/20 border border-purple-400/40 text-purple-200"
+                          className="px-2 py-1 rounded text-xs border border-purple-300/60 bg-purple-100/80 text-purple-800 dark:border-slate-600/80 dark:bg-slate-800 dark:text-slate-200"
                           whileHover={{
                             scale: 1.1,
                             boxShadow: '0 0 10px rgba(168, 85, 247, 0.5)',
@@ -672,7 +673,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.15 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-green-300 mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2 dark:text-slate-100">
                 <motion.span
                   className="w-1 h-1 rounded-full bg-green-400"
                   animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
@@ -705,7 +706,7 @@ export function About() {
                     >
                       {achievement.icon}
                     </motion.div>
-                    <p className="text-xs font-bold text-green-300">{achievement.title}</p>
+                    <p className="text-xs font-bold text-green-700 dark:text-slate-100">{achievement.title}</p>
                     <p className="text-xs text-muted-foreground mt-1">{achievement.desc}</p>
                   </PremiumCard>
                 ))}
@@ -719,7 +720,7 @@ export function About() {
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-lg font-bold text-blue-300 mb-3 flex items-center gap-2">
+              <h3 className="text-lg font-bold text-slate-900 mb-3 flex items-center gap-2 dark:text-slate-100">
                 <motion.span
                   className="w-1 h-1 rounded-full bg-blue-400"
                   animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
@@ -747,12 +748,12 @@ export function About() {
                   ].map((detail) => (
                     <div
                       key={detail.label}
-                      className="rounded-lg border border-blue-400/25 bg-blue-500/10 px-3 py-2"
+                      className="rounded-lg border border-blue-300/50 bg-blue-50/80 px-3 py-2 dark:border-slate-700 dark:bg-slate-800/70"
                     >
-                      <p className="text-[11px] font-bold uppercase tracking-wider text-blue-300/80">
+                      <p className="text-[11px] font-bold uppercase tracking-wider text-blue-700 dark:text-cyan-200/80">
                         {detail.label}
                       </p>
-                      <p className="mt-1 break-words text-sm font-semibold text-slate-100">
+                      <p className="mt-1 break-words text-sm font-semibold text-slate-900 dark:text-slate-100">
                         {detail.value}
                       </p>
                     </div>
