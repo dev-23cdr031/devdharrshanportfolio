@@ -249,6 +249,19 @@ const cardVariants = {
   },
 }
 
+const certificateSlideVariants = {
+  hidden: { opacity: 0, x: 96, scale: 0.98 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    scale: 1,
+    transition: {
+      duration: 0.7,
+      ease: 'easeOut' as const,
+    },
+  },
+}
+
 const statVariants = {
   hidden: (idx: number) => ({
     opacity: 0,
@@ -540,12 +553,33 @@ function GraphDashboard() {
 export function Achievements() {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]['value']>('award')
   const [selectedCertificate, setSelectedCertificate] = useState<Achievement | null>(null)
+  const [activeCertificateIndex, setActiveCertificateIndex] = useState(0)
   const filteredAchievements = achievementsData.filter((achievement) => achievement.category === activeFilter)
+  const displayedAchievements =
+    activeFilter === 'certificate' && filteredAchievements.length > 0
+      ? [filteredAchievements[activeCertificateIndex % filteredAchievements.length]]
+      : filteredAchievements
   const selectedCertificateImages = selectedCertificate?.images?.length
     ? selectedCertificate.images
     : selectedCertificate
       ? [selectedCertificate.image]
       : []
+
+  useEffect(() => {
+    if (activeFilter !== 'certificate' || filteredAchievements.length <= 1) {
+      return
+    }
+
+    const timer = window.setInterval(() => {
+      setActiveCertificateIndex((current) => (current + 1) % filteredAchievements.length)
+    }, 3000)
+
+    return () => window.clearInterval(timer)
+  }, [activeFilter, filteredAchievements.length])
+
+  useEffect(() => {
+    setActiveCertificateIndex(0)
+  }, [activeFilter])
 
   useEffect(() => {
     if (!selectedCertificate) {
@@ -665,14 +699,14 @@ export function Achievements() {
         ) : (
           <motion.div
             className={`grid grid-cols-1 items-stretch gap-5 lg:gap-6 ${
-              activeFilter === 'certificate' ? 'sm:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2'
+              activeFilter === 'certificate' ? 'mx-auto max-w-3xl' : 'md:grid-cols-2'
             }`}
             variants={containerVariants}
-            key={activeFilter}
+            key={`${activeFilter}-${activeFilter === 'certificate' ? activeCertificateIndex : 'grid'}`}
             initial="hidden"
             animate="visible"
           >
-            {filteredAchievements.map((achievement) => {
+            {displayedAchievements.map((achievement) => {
               const isCertificate = achievement.category === 'certificate'
               const certificateImages = achievement.images?.length ? achievement.images : [achievement.image]
               const hasMultipleCertificates = certificateImages.length > 1
@@ -680,7 +714,7 @@ export function Achievements() {
               return (
               <motion.article
                 key={achievement.id}
-                variants={cardVariants}
+                variants={isCertificate ? certificateSlideVariants : cardVariants}
                 whileHover={{ y: -10, scale: 1.014, rotateX: 1.2, rotateY: -1.2 }}
                 transition={{ duration: 0.25, ease: 'easeOut' as const }}
                 className={`group relative flex overflow-hidden rounded-2xl border border-cyan-200/10 bg-gradient-to-br from-white/[0.08] via-white/[0.045] to-blue-950/25 p-4 shadow-[0_22px_90px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl transition-colors duration-300 hover:border-cyan-300/45 hover:shadow-[0_28px_110px_rgba(34,211,238,0.18)] sm:p-5 ${isCertificate ? 'min-h-[520px]' : 'min-h-[430px]'}`}
