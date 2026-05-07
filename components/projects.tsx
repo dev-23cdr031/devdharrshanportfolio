@@ -18,6 +18,16 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    id: 1,
+    title: 'HackConnect',
+    description: 'Developed a responsive web application for hackathons discovery and participation. Enabled users to find hackathons, form teams, and collaborate in real time. Implemented secure user authentication and authorization with real-time search and filtering features to help users discover relevant hackathons.',
+    image: '/images/hackconnect-project.png',
+    tags: ['React', 'Node.js', 'MongoDB', 'WebSocket'],
+    link: 'https://github.com/dev-23cdr031/hackconnect',
+    github: 'https://github.com/dev-23cdr031/hackconnect',
+    featured: true,
+  },
+  {
     id: 2,
     title: 'Hybrid Renewable Orchestration',
     description: 'AI-powered role-based dashboard for real-time monitoring and optimization of photovoltaic (PV) system efficiency. Implemented digital twin simulation to model and analyze solar data with optimized battery usage and energy storage management.',
@@ -29,10 +39,10 @@ const projectsData: Project[] = [
   },
   {
     id: 3,
-    title: 'Virtual Herbal Garden_MERN Stack',
-    description: 'Designed an interactive user interface that allows users to explore medicinal plants with images, descriptions, and medicinal uses. Implemented a database to store plant details, including scientific names, benefits, and traditional medicinal applications. Integrated search and multimedia features to enhance learning and improve user engagement.',
-    image: '/images/virtual-herbal-garden-project.png',
-    tags: ['MERN', 'MongoDB', 'Express', 'React', 'Node.js'],
+    title: 'ShaadisSpot',
+    description: 'Developed a web-based platform for booking marriage halls and catering services online. Enabled users to search, compare, and select venues based on specific capacity and budget with real-time availability checking to avoid double bookings. Integrated secure payment processing for smooth transactions.',
+    image: '/images/shaadispot-project.png',
+    tags: ['Next.js', 'PostgreSQL', 'Stripe', 'Tailwind CSS'],
     link: '#',
     github: '#',
     featured: true,

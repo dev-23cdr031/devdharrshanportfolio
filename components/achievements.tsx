@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { AnimatePresence, motion } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Activity, Award, Brain, Cloud, Code2, Database, Flame, Medal, Rocket, ShieldCheck, Sparkles, Target, Trophy, X, Zap } from 'lucide-react'
 
 interface Achievement {
@@ -19,6 +19,15 @@ interface Achievement {
 const achievementsData: Achievement[] = [
   {
     id: 1,
+    title: 'SIH Finalist - Software Edition',
+    description: 'Selected as a finalist in the Smart India Hackathon (Software edition).',
+    date: '2025',
+    impact: 'Finalist',
+    image: '/images/sih-finalist-achievement.jpeg',
+    category: 'award',
+  },
+  {
+    id: 2,
     title: 'KPIT Sparkle - Pre-Finalist',
     description: 'Reached the pre-final stage in the KPIT Sparkle competition.',
     date: '2025',
@@ -27,16 +36,25 @@ const achievementsData: Achievement[] = [
     category: 'award',
   },
   {
-    id: 2,
-    title: 'NextWave Academy Buildathon - 1st Prize',
-    description: 'Secured 1st prize in the NextWave Academy Buildathon.',
+    id: 3,
+    title: 'Gen-AI Buildathon - 5th Prize',
+    description: 'Secured 5th prize in a Gen-AI themed buildathon showcasing generative AI projects.',
     date: '2025',
-    impact: '1st Prize',
-    image: '/images/nextwave-buildathon-achievement.jpg',
+    impact: '5th Prize',
+    image: '/images/gen-ai-buildathon-achievement.jpg',
     category: 'award',
   },
   {
-    id: 3,
+    id: 4,
+    title: 'PoC Dep Level - 2nd Prize',
+    description: 'Awarded 2nd prize for proof-of-concept at department-level competition.',
+    date: '2024',
+    impact: '2nd Prize',
+    image: '/images/poc-2nd-prize-achievement.jpg',
+    category: 'award',
+  },
+  {
+    id: 5,
     title: 'IIT Bhubaneswar Hackathon Finals',
     description: 'Competed in the IIT Bhubaneswar hackathon finals and secured 5th place.',
     date: '2026',
@@ -45,7 +63,7 @@ const achievementsData: Achievement[] = [
     category: 'award',
   },
   {
-    id: 4,
+    id: 6,
     title: 'Hyrup Hackathon',
     description: 'Selected as a finalist in the Hyrup Hackathon.',
     date: '2026',
@@ -54,84 +72,144 @@ const achievementsData: Achievement[] = [
     category: 'award',
   },
   {
-    id: 5,
-    title: 'CodeFest 2026 - Eureka Event',
-    description: 'Certificate of excellence for outstanding performance in the Eureka Event at CodeFest 2026, IIT BHU Varanasi.',
-    date: '2026',
-    impact: 'Excellence',
-    image: '/images/certificate-codefest-excellence.jpg',
-    category: 'certificate',
-  },
-  {
-    id: 6,
-    title: 'Hackovium: Vibecraft Edition',
-    description: 'Certificate of participation for actively participating in the 24-hour Hackovium: Vibecraft Edition hackathon.',
-    date: '2026',
-    impact: 'Participation',
-    image: '/images/certificate-hackovium-vibecraft.png',
-    category: 'certificate',
-  },
-  {
     id: 7,
-    title: 'FixForward Ideathon - First Round',
-    description: 'Certificate of innovation and achievement for securing a spot among the Top 300 teams in the first round.',
-    date: '2026',
-    impact: 'Top 300',
-    image: '/images/certificate-fixforward-innovation.jpg',
+    title: 'SIH Finals Certificate',
+    description: 'Participation certificate for the Smart India Hackathon 2025 Grand Finale.',
+    date: '2025',
+    impact: 'Certificate',
+    image: '/images/sih-finals-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 8,
-    title: 'IIT Bhubaneswar Web Hackathon',
-    description: 'Certificate of cooperation for actively participating in the Web Hackathon conducted by Pravaah 2026.',
+    title: 'KPIT Sparkle Pre-Finals Certificate',
+    description: 'Certificate for reaching the KPIT Sparkle 2026 Pre-Finale round.',
     date: '2026',
-    impact: 'Participation',
-    image: '/images/certificate-iit-bhubaneswar-web-hackathon.jpg',
+    impact: 'Certificate',
+    image: '/images/kpit-sparkle-pre-finals-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 9,
-    title: 'IIT Delhi Startup Debate 4.0',
-    description: 'Certificate of participation in Startup - The Debate 4.0 organized by Indian Institute of Technology Delhi.',
+    title: 'KPIT Sparkle Project 2 Certificate',
+    description: 'Certificate for reaching the KPIT Sparkle 2026 Pre-Finale round with Hybrid Renewable Energy.',
     date: '2026',
-    impact: 'Participation',
-    image: '/images/certificate-iit-delhi-startup-debate.jpg',
+    impact: 'Certificate',
+    image: '/images/kpit-sparkle-project-2-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 10,
-    title: 'KPIT Sparkle 2026 Pre-Finale',
-    description: 'Certificate recognizing Roshini M as part of the KPIT Sparkle 2026 Pre-Finale round for Smart Tourist Safety.',
-    date: '2026',
-    impact: 'Top 100',
-    image: '/images/certificate-kpit-sparkle-smart-tourist.jpg',
+    title: 'NextWave Buildathon - 8th Prize',
+    description: 'National-level certificate for securing 8th position in India at the GenAI Buildathon Grand Finale 2025.',
+    date: '2025',
+    impact: 'Certificate',
+    image: '/images/nextwave-buildathon-8th-prize-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 11,
-    title: 'India AI Impact Buildathon',
-    description: 'Certificate of participation in the nationwide India AI Impact Buildathon conducted at the India AI Impact Summit 2026.',
-    date: '2026',
-    impact: 'Participation',
-    image: '/images/certificate-india-ai-impact-buildathon.jpg',
+    title: 'State-Level Buildathon Qualification',
+    description: 'Certificate for qualifying to the State-Level Buildathon in the OpenAI Academy x NxtWave Buildathon.',
+    date: '2025',
+    impact: 'Certificate',
+    image: '/images/state-level-buildathon-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 12,
-    title: 'HYRUP FixForward Ideathon Finalist',
-    description: 'Certificate of achievement for emerging as a finalist at the HYRUP FixForward Ideathon 2026.',
+    title: 'IIT Bhubaneswar - 5th Prize Certificate',
+    description: 'Certificate for the Web Hackathon conducted by Pravaah 2026 at IIT Bhubaneswar.',
     date: '2026',
-    impact: 'Finalist',
-    image: '/images/certificate-fixforward-finalist.jpg',
+    impact: 'Certificate',
+    image: '/images/iit-bhubaneswar-5th-prize-certificate.jpg',
     category: 'certificate',
   },
   {
     id: 13,
-    title: 'NextWave Academy Gen AI Buildathon',
-    description: 'Certificate of achievement for winning first place in the Gen AI Buildathon conducted by Nxt Wave Academy.',
+    title: 'IIT Delhi Startup Finals Certificate',
+    description: 'Certificate of participation in Startup - The Debate 4.0 organized by IIT Delhi.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/iit-delhi-startup-finals-certificate.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 14,
+    title: 'IIT Varanasi Participation Certificate',
+    description: 'Certificate for outstanding performance in the Eureka event at Codefest 2026, IIT BHU Varanasi.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/iit-varanasi-participation-certificate.png',
+    category: 'certificate',
+  },
+  {
+    id: 15,
+    title: 'National Cloud Innovation Challenge',
+    description: 'Certificate for participating in Phase 3 prototype evaluation of the National Cloud Innovation Challenge by 3SVK.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/national-cloud-innovation-challenge-certificate.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 16,
+    title: 'HYRUP FixForward Ideathon Finalist',
+    description: 'Certificate of achievement for emerging as a finalist at the HYRUP FixForward Ideathon 2026.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/hyrup-fixforward-certificate.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 17,
+    title: 'Hackovium: Vibecraft Edition',
+    description: 'Certificate of participation for actively participating in the 24-hour Hackovium: Vibecraft Edition hackathon.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/hackovium-vibecraft-certificate.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 18,
+    title: 'Other CLG Events',
+    description: 'Collection of four certificates from technical symposiums, hackathons, and college-level events.',
+    date: '2026',
+    impact: 'Events',
+    image: '/images/other-clg-events-certificates.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 19,
+    title: 'Publication Certificates',
+    description: 'Four publication certificates for AI originality checker, Smart Tourist Safety, SHAADISPOT, and HACKCONNECT.',
+    date: '2026',
+    impact: '4 Certificates',
+    image: '/images/certificate-13-ijsci-originality.png',
+    images: [
+      '/images/certificate-13-ijsci-originality.png',
+      '/images/certificate-13-ijsret-tourist-safety.png',
+      '/images/certificate-13-irjmets-shaadispot.jpg',
+      '/images/certificate-13-ijprems-hackconnect.jpg',
+    ],
+    category: 'certificate',
+  },
+  {
+    id: 20,
+    title: 'India AI Impact Buildathon',
+    description: 'Certificate of participation in the India AI Impact Buildathon conducted at the India AI Impact Summit 2026.',
+    date: '2026',
+    impact: 'Certificate',
+    image: '/images/india-ai-impact-buildathon-certificate.jpg',
+    category: 'certificate',
+  },
+  {
+    id: 21,
+    title: 'Proof of Concept Ideathon',
+    description: 'Certificate of appreciation for winning 2nd prize in the Proof of Concept phase of Ideathon 2025.',
     date: '2025',
-    impact: '1st Place',
-    image: '/images/certificate-nextwave-gen-ai-first-place.jpg',
+    impact: '2nd Prize',
+    image: '/images/certificate-15-poc-ideathon-2025.jpg',
     category: 'certificate',
   },
 ]
@@ -219,9 +297,9 @@ const graphTrendData = [
 
 const graphHighlights = [
   { value: 6, label: 'Award Milestones', detail: 'Finals, prizes, finalist selections', icon: Trophy },
-  { value: 9, label: 'Certificates', detail: 'Auto-sliding certificate showcase', icon: ShieldCheck },
+  { value: 15, label: 'Certificates', detail: 'Participation, publications, college events', icon: ShieldCheck },
   { value: 5, label: 'Featured Projects', detail: 'AI, full-stack, mobile, cloud systems', icon: Rocket },
-  { value: 4, label: 'Research Signals', detail: 'Publication and project milestones', icon: Target },
+  { value: 4, label: 'Research Signals', detail: 'Publication certificates grouped in portfolio', icon: Target },
 ]
 
 function GraphDashboard() {
@@ -462,11 +540,7 @@ function GraphDashboard() {
 export function Achievements() {
   const [activeFilter, setActiveFilter] = useState<(typeof filters)[number]['value']>('award')
   const [selectedCertificate, setSelectedCertificate] = useState<Achievement | null>(null)
-  const [certificateSlideIndex, setCertificateSlideIndex] = useState(0)
   const filteredAchievements = achievementsData.filter((achievement) => achievement.category === activeFilter)
-  const activeCertificate = activeFilter === 'certificate' && filteredAchievements.length > 0
-    ? filteredAchievements[certificateSlideIndex % filteredAchievements.length]
-    : null
   const selectedCertificateImages = selectedCertificate?.images?.length
     ? selectedCertificate.images
     : selectedCertificate
@@ -492,22 +566,6 @@ export function Achievements() {
       window.removeEventListener('keydown', handleKeyDown)
     }
   }, [selectedCertificate])
-
-  useEffect(() => {
-    setCertificateSlideIndex(0)
-  }, [activeFilter])
-
-  useEffect(() => {
-    if (activeFilter !== 'certificate' || filteredAchievements.length <= 1) {
-      return
-    }
-
-    const slideTimer = window.setInterval(() => {
-      setCertificateSlideIndex((currentIndex) => (currentIndex + 1) % filteredAchievements.length)
-    }, 3000)
-
-    return () => window.clearInterval(slideTimer)
-  }, [activeFilter, filteredAchievements.length])
 
   return (
     <section id="achievements" className="relative overflow-hidden bg-[#070b1f] px-4 py-20 sm:px-6 sm:py-24 lg:px-8 lg:py-32">
@@ -604,156 +662,80 @@ export function Achievements() {
 
         {activeFilter === 'graph' ? (
           <GraphDashboard />
-        ) : activeFilter === 'certificate' && activeCertificate ? (
-          <motion.div
-            key="certificate-carousel"
-            className="mx-auto max-w-6xl"
-            initial={{ opacity: 0, y: 22 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: 'easeOut' as const }}
-          >
-            <div className="relative overflow-hidden rounded-2xl border border-cyan-200/10 bg-gradient-to-br from-white/[0.08] via-white/[0.045] to-blue-950/25 p-4 shadow-[0_24px_110px_rgba(0,0,0,0.38),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl sm:p-5 lg:p-6">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_12%_0%,rgba(34,211,238,0.18),transparent_42%),radial-gradient(circle_at_90%_110%,rgba(59,130,246,0.16),transparent_45%)]" />
-
-              <div className="relative z-10 grid gap-6 lg:grid-cols-[1.45fr_0.85fr] lg:items-stretch">
-                <button
-                  type="button"
-                  onClick={() => setSelectedCertificate(activeCertificate)}
-                  className="group relative min-h-[280px] overflow-hidden rounded-xl border border-cyan-200/10 bg-slate-950 focus:outline-none focus:ring-2 focus:ring-cyan-300/70 focus:ring-offset-2 focus:ring-offset-[#070b1f] sm:min-h-[420px] lg:min-h-[520px]"
-                  aria-label={`View full ${activeCertificate.title}`}
-                >
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={activeCertificate.id}
-                      className="absolute inset-0 bg-white"
-                      initial={{ x: '100%', opacity: 0.65 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: '-100%', opacity: 0.65 }}
-                      transition={{ duration: 0.68, ease: 'easeInOut' as const }}
-                    >
-                      <Image
-                        src={activeCertificate.image}
-                        alt={activeCertificate.title}
-                        fill
-                        sizes="(min-width: 1024px) 65vw, 100vw"
-                        className="object-contain"
-                        priority={certificateSlideIndex === 0}
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                  <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-slate-950/45 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
-                  <span className="absolute bottom-4 right-4 rounded-full border border-cyan-200/25 bg-slate-950/75 px-3 py-1 text-xs font-bold text-cyan-100 opacity-0 backdrop-blur-xl transition-opacity duration-300 group-hover:opacity-100">
-                    Click to View
-                  </span>
-                </button>
-
-                <div className="flex flex-col justify-between gap-6 rounded-xl border border-cyan-200/10 bg-slate-950/50 p-5">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={`${activeCertificate.id}-content`}
-                      initial={{ x: 32, opacity: 0 }}
-                      animate={{ x: 0, opacity: 1 }}
-                      exit={{ x: -32, opacity: 0 }}
-                      transition={{ duration: 0.5, ease: 'easeOut' as const }}
-                      className="space-y-5"
-                    >
-                      <div className="flex items-start justify-between gap-4">
-                        <motion.div
-                          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-300 via-orange-400 to-cyan-400 text-slate-950 shadow-[0_0_34px_rgba(34,211,238,0.22)]"
-                          animate={{ y: [0, -5, 0], scale: [1, 1.04, 1] }}
-                          transition={{ duration: 3.2, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <ShieldCheck className="h-5 w-5" />
-                        </motion.div>
-
-                        <div className="space-y-2 text-right">
-                          <span className="inline-flex rounded-full border border-cyan-200/20 bg-cyan-300/10 px-3 py-1 text-xs font-bold text-cyan-100 shadow-[0_0_18px_rgba(34,211,238,0.16)]">
-                            Certificate
-                          </span>
-                          <p className="text-xs font-semibold text-slate-400">{activeCertificate.date}</p>
-                        </div>
-                      </div>
-
-                      <div className="space-y-4">
-                        <p className="text-xs font-bold uppercase tracking-[0.2em] text-cyan-200/80">
-                          Slide {certificateSlideIndex + 1} of {filteredAchievements.length}
-                        </p>
-                        <h3 className="text-2xl font-bold leading-tight text-white sm:text-3xl">
-                          {activeCertificate.title}
-                        </h3>
-                        <p className="text-sm leading-7 text-slate-300/82 sm:text-base">
-                          {activeCertificate.description}
-                        </p>
-                      </div>
-
-                      <div className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.12)]">
-                        <Sparkles className="h-4 w-4" />
-                        <span>{activeCertificate.impact}</span>
-                      </div>
-                    </motion.div>
-                  </AnimatePresence>
-
-                  <div className="space-y-4">
-                    <div className="grid grid-cols-9 gap-2">
-                      {filteredAchievements.map((certificate, index) => (
-                        <button
-                          key={certificate.id}
-                          type="button"
-                          aria-label={`Show ${certificate.title}`}
-                          onClick={() => setCertificateSlideIndex(index)}
-                          className={`h-2 rounded-full transition-all duration-300 ${
-                            index === certificateSlideIndex ? 'bg-cyan-300 shadow-[0_0_16px_rgba(34,211,238,0.65)]' : 'bg-white/18 hover:bg-white/35'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                    <div className="h-1 overflow-hidden rounded-full bg-white/10">
-                      <motion.div
-                        key={activeCertificate.id}
-                        className="h-full rounded-full bg-gradient-to-r from-cyan-300 to-blue-400"
-                        initial={{ width: '0%' }}
-                        animate={{ width: '100%' }}
-                        transition={{ duration: 3, ease: 'linear' }}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
         ) : (
           <motion.div
-            className="grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 lg:gap-6"
+            className={`grid grid-cols-1 items-stretch gap-5 lg:gap-6 ${
+              activeFilter === 'certificate' ? 'sm:grid-cols-2 xl:grid-cols-3' : 'md:grid-cols-2'
+            }`}
             variants={containerVariants}
             key={activeFilter}
             initial="hidden"
             animate="visible"
           >
             {filteredAchievements.map((achievement) => {
+              const isCertificate = achievement.category === 'certificate'
+              const certificateImages = achievement.images?.length ? achievement.images : [achievement.image]
+              const hasMultipleCertificates = certificateImages.length > 1
+
               return (
               <motion.article
                 key={achievement.id}
                 variants={cardVariants}
                 whileHover={{ y: -10, scale: 1.014, rotateX: 1.2, rotateY: -1.2 }}
                 transition={{ duration: 0.25, ease: 'easeOut' as const }}
-                className="group relative flex min-h-[430px] overflow-hidden rounded-2xl border border-cyan-200/10 bg-gradient-to-br from-white/[0.08] via-white/[0.045] to-blue-950/25 p-4 shadow-[0_22px_90px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl transition-colors duration-300 hover:border-cyan-300/45 hover:shadow-[0_28px_110px_rgba(34,211,238,0.18)] sm:p-5"
+                className={`group relative flex overflow-hidden rounded-2xl border border-cyan-200/10 bg-gradient-to-br from-white/[0.08] via-white/[0.045] to-blue-950/25 p-4 shadow-[0_22px_90px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.08)] backdrop-blur-2xl transition-colors duration-300 hover:border-cyan-300/45 hover:shadow-[0_28px_110px_rgba(34,211,238,0.18)] sm:p-5 ${isCertificate ? 'min-h-[520px]' : 'min-h-[430px]'}`}
               >
                 <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_0%,rgba(34,211,238,0.16),transparent_42%),radial-gradient(circle_at_92%_110%,rgba(59,130,246,0.14),transparent_42%)] opacity-70" />
                 <div className="pointer-events-none absolute inset-y-0 -left-1/2 w-1/2 skew-x-[-18deg] bg-gradient-to-r from-transparent via-white/18 to-transparent opacity-0 transition-all duration-700 group-hover:left-[120%] group-hover:opacity-100" />
 
                 <div className="relative z-10 flex h-full w-full flex-col">
                   <div
-                    className="relative mb-5 h-44 overflow-hidden rounded-xl border border-cyan-200/10 bg-slate-950"
+                    role={isCertificate ? 'button' : undefined}
+                    tabIndex={isCertificate ? 0 : undefined}
+                    aria-label={isCertificate ? `View full ${achievement.title}` : undefined}
+                    onClick={() => {
+                      if (isCertificate) {
+                        setSelectedCertificate(achievement)
+                      }
+                    }}
+                    onKeyDown={(event) => {
+                      if (isCertificate && (event.key === 'Enter' || event.key === ' ')) {
+                        event.preventDefault()
+                        setSelectedCertificate(achievement)
+                      }
+                    }}
+                    className={`relative mb-5 overflow-hidden rounded-xl border border-cyan-200/10 bg-slate-950 ${isCertificate ? 'aspect-square h-auto w-full cursor-zoom-in focus:outline-none focus:ring-2 focus:ring-cyan-300/70 focus:ring-offset-2 focus:ring-offset-[#070b1f]' : 'h-44'}`}
                   >
-                    <Image
-                      src={achievement.image}
-                      alt={achievement.title}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover opacity-80 transition duration-700 group-hover:scale-110 group-hover:opacity-100"
-                    />
+                    {hasMultipleCertificates ? (
+                      <div className="relative z-10 grid h-full w-full grid-cols-2 gap-1.5 bg-slate-950 p-2">
+                        {certificateImages.map((image, imageIdx) => (
+                          <div key={image} className="relative overflow-hidden rounded-lg border border-cyan-200/10 bg-white">
+                            <Image
+                              src={image}
+                              alt={`${achievement.title} ${imageIdx + 1}`}
+                              fill
+                              sizes="(min-width: 768px) 25vw, 50vw"
+                              className="object-contain p-1 opacity-90 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    ) : (
+                      <Image
+                        src={achievement.image}
+                        alt={achievement.title}
+                        fill
+                        sizes="(min-width: 768px) 50vw, 100vw"
+                        className={`${isCertificate ? 'object-contain p-3' : 'object-cover'} opacity-80 transition duration-700 group-hover:scale-110 group-hover:opacity-100`}
+                      />
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-[#071027] via-[#071027]/30 to-transparent" />
                     <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-cyan-400/20 to-transparent blur-xl" />
+                    {hasMultipleCertificates ? (
+                      <span className="absolute right-3 top-3 z-20 rounded-full border border-cyan-200/20 bg-slate-950/80 px-3 py-1 text-xs font-bold text-cyan-100 backdrop-blur-xl">
+                        4 in 1
+                      </span>
+                    ) : null}
                   </div>
 
                   <div className="mb-5 flex items-start justify-between gap-4 border-b border-white/10 pb-5 transition-colors duration-300 group-hover:border-cyan-300/25">
@@ -786,12 +768,22 @@ export function Achievements() {
 
                   {achievement.impact ? (
                     <div className="mt-7 border-t border-white/10 pt-5 transition-colors duration-300 group-hover:border-cyan-300/25">
-                      <div className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.12)] transition-colors duration-300 group-hover:border-cyan-300/55 group-hover:bg-cyan-300/15">
-                        <motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}>
-                          <Flame className="h-4 w-4" />
-                        </motion.div>
-                        <span>{achievement.impact}</span>
-                      </div>
+                      {isCertificate ? (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCertificate(achievement)}
+                          className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-cyan-300/30 bg-cyan-300/12 px-4 py-3 text-sm font-bold text-cyan-100 shadow-[0_0_22px_rgba(34,211,238,0.14)] transition hover:border-cyan-300/65 hover:bg-cyan-300/20 hover:text-white focus:outline-none focus:ring-2 focus:ring-cyan-300/70 focus:ring-offset-2 focus:ring-offset-[#070b1f]"
+                        >
+                          Click to View
+                        </button>
+                      ) : (
+                        <div className="inline-flex items-center gap-2 rounded-xl border border-cyan-300/25 bg-cyan-300/10 px-4 py-2 text-sm font-semibold text-cyan-200 shadow-[0_0_20px_rgba(34,211,238,0.12)] transition-colors duration-300 group-hover:border-cyan-300/55 group-hover:bg-cyan-300/15">
+                          <motion.div animate={{ rotate: 360 }} transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}>
+                            <Flame className="h-4 w-4" />
+                          </motion.div>
+                          <span>{achievement.impact}</span>
+                        </div>
+                      )}
                     </div>
                   ) : null}
                 </div>

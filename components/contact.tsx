@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { Mail, Phone, MapPin, Send, Github, Linkedin, Instagram } from 'lucide-react'
 import { AnimatedSection, SectionHeader } from './motion-shell'
 
-const contactEmail = 'roshinimagudeeswaran@gmail.com'
+const contactEmail = 'devdharrshan40@gmail.com'
 
 export function Contact() {
   const [formState, setFormState] = useState({
@@ -76,13 +76,13 @@ export function Contact() {
     {
       icon: <Phone className="w-6 h-6" />,
       label: 'Phone',
-      value: '+91 6374732628',
-      href: 'tel:+916374732628',
+      value: '+91 9363534589',
+      href: 'tel:+919363534589',
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       label: 'Location',
-      value: 'UDUMALAIPETTAI, TAMILNADU',
+      value: 'Virudhunagar, Tamil Nadu',
       href: '#',
     },
   ]
@@ -132,9 +132,9 @@ export function Contact() {
               <p className="text-sm font-semibold text-muted-foreground mb-4 animate-text-glow">Follow me</p>
               <div className="flex gap-3">
                 {[
-                  { href: 'https://github.com/Roshini71', label: 'GitHub' },
-                  { href: 'https://www.linkedin.com/in/roshini1706?utm_source=share_via&utm_content=profile&utm_medium=member_android', label: 'LinkedIn' },
-                  { href: 'https://www.instagram.com/roshinimagudees?igsh=MWVqajFmZmlzYzFzbw==', label: 'Instagram' },
+                  { href: 'https://github.com/dev-23cdr031', label: 'GitHub' },
+                  { href: 'https://www.linkedin.com/in/devdharrshans?utm_source=share_via&utm_content=profile&utm_medium=member_android', label: 'LinkedIn' },
+                  { href: 'https://www.instagram.com/dev_.dharrshan._19?igsh=cjhiZWlzNzl3YjBq', label: 'Instagram' },
                 ].map((social, idx) => {
                   const Icon = idx === 0 ? Github : idx === 1 ? Linkedin : Instagram
                   return (

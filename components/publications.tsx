@@ -17,22 +17,49 @@ interface Paper {
 const papers: Paper[] = [
   {
     id: 1,
-    title: 'AI in Schools',
-    venue: 'CIT, Coimbatore',
-    details: 'Focused on AI\'s role in personalized learning',
-    year: '2025',
+    title: 'SHAADISPOT',
+    venue: 'IRJMETS (VOL 08/ISS 01)',
+    year: '2026',
+    link: 'https://www.irjmets.com/paperdetail.php?paperId=271873b0747204fed65f3dd8e267484e',
   },
   {
     id: 2,
-    title: 'Virtual Reality',
-    venue: 'Sri Ramakrishna College, Coimbatore',
-    details: 'Explored applications in immersive tech, healthcare, and design',
-    year: '2025',
+    title: 'SMART TOURIST SAFETY SYSTEM',
+    venue: 'IJSRET (VOL 12/ISS 1)',
+    year: '2026',
+    link: 'https://ijsret.com/2026/01/14/smart-tourist-safety/',
+  },
+  {
+    id: 3,
+    title: 'HACKCONNECT',
+    venue: 'IJPREMS (VOL 06/ISS 01)',
+    year: '2026',
+    link: 'https://www.ijprems.com/research-paper/hackconnect',
+  },
+  {
+    id: 4,
+    title: 'AI-BASED PROJECT ORIGINALITY CHECKER FOR RESUMES',
+    venue: 'IJSCI (VOL 03/ISS 01)',
+    year: '2026',
+    link: 'https://ijsci.com/paper-details.php/16695',
+  },
+  {
+    id: 5,
+    title: 'TRAVEL WIFI ROUTER',
+    venue: 'AIP CONF',
+    year: '2026',
+    link: 'https://pubs.aip.org/aip/acp/search-results?page=1&q=divyacs.23csd%40kongu.edu&fl_SiteID=1000005',
   },
 ]
 
 const publicationTitleParts = [
-  { text: 'Presentations', highlight: true },
+  { text: 'Selected', highlight: false },
+  { text: 'peer-reviewed', highlight: false },
+  { text: 'and', highlight: false },
+  { text: 'conference', highlight: false },
+  { text: 'publications', highlight: true },
+  { text: 'with', highlight: false },
+  { text: 'details.', highlight: false },
 ]
 
 const containerVariants = {
@@ -174,7 +201,7 @@ export function Publications() {
             transition={{ duration: 0.65, ease: 'easeOut' as const, boxShadow: { duration: 2.8, repeat: Infinity, ease: 'easeInOut' } }}
           >
             <BookOpen className="h-5 w-5 animate-pulse" />
-            <span>Paper Presented</span>
+            <span>Paper Published</span>
           </motion.div>
 
           <h2

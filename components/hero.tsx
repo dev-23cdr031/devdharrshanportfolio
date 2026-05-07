@@ -147,7 +147,7 @@ export function Hero() {
             className="text-6xl sm:text-7xl lg:text-8xl font-black text-balance leading-tight tracking-tight"
           >
             <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent animate-gradient-fast inline-block" style={{ animationDelay: '0.3s' }}>
-              ROSHINI M
+              DEV DHARRSHAN S
             </span>
           </motion.h1>
 
@@ -200,7 +200,7 @@ export function Hero() {
               View My Work
             </Link>
             <Link
-              href="/files/roshini-m-cv.pdf"
+              href="/files/dev-dharrshan-cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 border-2 border-muted-foreground/30 text-foreground hover:border-primary hover:bg-primary/10 rounded-lg font-semibold transition-all hover:scale-105 active:scale-95 animate-fade-in-up duration-300"
@@ -213,8 +213,8 @@ export function Hero() {
           {/* Social Links */}
           <motion.div className="flex justify-center gap-6 pt-8" variants={heroItem}>
             {[
-              { href: 'https://github.com/Roshini71', Icon: Github, label: 'GitHub' },
-              { href: 'https://www.linkedin.com/in/roshini1706?utm_source=share_via&utm_content=profile&utm_medium=member_android', Icon: Linkedin, label: 'LinkedIn' },
+              { href: 'https://github.com/dev-23cdr031', Icon: Github, label: 'GitHub' },
+              { href: 'https://www.linkedin.com/in/devdharrshans?utm_source=share_via&utm_content=profile&utm_medium=member_android', Icon: Linkedin, label: 'LinkedIn' },
               { href: 'mailto:devdharrshan40@gmail.com', Icon: Mail, label: 'Email' },
             ].map((social, idx) => (
               <a

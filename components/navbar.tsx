@@ -28,7 +28,7 @@ export function Navbar() {
     { href: '#skills', label: 'Skills' },
     { href: '#projects', label: 'Projects' },
     { href: '#experience', label: 'Education' },
-    { href: '#publications', label: 'Presentations' },
+    { href: '#publications', label: 'Publications' },
   ]
 
   const toggleTheme = () => {

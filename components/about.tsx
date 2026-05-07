@@ -233,17 +233,6 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
   const [rotateY, setRotateY] = useState(0)
   const [shinePos, setShinePos] = useState({ x: 0, y: 0 })
 
-    const [isLight, setIsLight] = useState(false)
-    const [mounted, setMounted] = useState(false)
-
-    useEffect(() => {
-      const update = () => setIsLight(document.documentElement.classList.contains('light'))
-      update()
-      setMounted(true)
-      const obs = new MutationObserver(() => update())
-      obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-      return () => obs.disconnect()
-    }, [])
   const handleMouseMove = (e: ReactMouseEvent) => {
     if (!ref.current) return
 
@@ -278,12 +267,7 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
       className="relative"
     >
       <motion.div
-            className={
-              `relative p-6 rounded-2xl overflow-hidden group ` +
-              (mounted && isLight
-                ? 'bg-white/95 border border-slate-200 text-slate-900 shadow-sm'
-                : 'bg-gradient-to-br from-slate-800/70 to-slate-900/80 border border-cyan-400/40 backdrop-blur-md')
-            }
+        className="relative p-6 rounded-2xl border border-cyan-500/25 bg-white/90 shadow-[0_24px_70px_rgba(15,23,42,0.12)] backdrop-blur-md overflow-hidden group dark:border-cyan-400/40 dark:bg-gradient-to-br dark:from-slate-800/70 dark:to-slate-900/80"
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -310,7 +294,7 @@ function TiltProfileCard({ children }: { children: React.ReactNode }) {
           animate={{ rotate: 360 }}
           transition={{ duration: 10, repeat: Infinity, ease: 'linear', type: 'tween' }}
           style={{
-                    boxShadow: mounted && isLight ? 'inset 0 0 8px rgba(0,0,0,0.04)' : 'inset 0 0 30px rgba(6, 182, 212, 0.2)',
+            boxShadow: 'inset 0 0 30px rgba(6, 182, 212, 0.2)',
           }}
         />
 
@@ -365,18 +349,6 @@ function PremiumCard({
     blue: 'group-hover:border-blue-400/70',
   }[accent]
 
-  const [isLight, setIsLight] = useState(false)
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    const update = () => setIsLight(document.documentElement.classList.contains('light'))
-    update()
-    setMounted(true)
-    const obs = new MutationObserver(() => update())
-    obs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] })
-    return () => obs.disconnect()
-  }, [])
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -391,11 +363,7 @@ function PremiumCard({
       className="group relative"
     >
       <motion.div
-        className={
-          `relative p-4 rounded-lg transition-all duration-300 overflow-hidden ` +
-          `${borderColor} ${hoverBorder} ` +
-          (mounted && isLight ? 'bg-white/95 text-slate-900 shadow-sm' : 'bg-gradient-to-br from-slate-800/50 to-slate-900/60 backdrop-blur-md')
-        }
+        className={`relative p-4 rounded-lg border ${borderColor} ${hoverBorder} bg-white/88 shadow-[0_16px_42px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 overflow-hidden dark:bg-gradient-to-br dark:from-slate-800/50 dark:to-slate-900/60`}
         whileHover={{
           y: -8,
           boxShadow: `0 20px 40px rgba(6, 182, 212, 0.15)`,
@@ -555,7 +523,7 @@ function PremiumTimeline() {
           className="relative pl-6 group"
         >
           {/* Timeline Dot */}
-          <motion.div className="absolute -left-2 top-3 w-4 h-4 rounded-full border-2 border-cyan-400 bg-slate-900">
+          <motion.div className="absolute -left-2 top-3 w-4 h-4 rounded-full border-2 border-cyan-500 bg-white dark:border-cyan-400 dark:bg-slate-900">
             <motion.div
               className="absolute inset-1 rounded-full bg-cyan-400 scale-0"
               animate={{
@@ -636,7 +604,7 @@ export function About() {
             {/* Intro Card */}
             <PremiumCard delay={0.1} accent="cyan">
               <p className="text-sm leading-relaxed text-muted-foreground">
-                I'm Roshini M, a passionate and dedicated aspiring software developer with a strong enthusiasm for web development, modern technologies, and innovative digital solutions. As a recipient of the IIT Bhubaneswar 5th Prize, I have gained valuable experience in problem-solving, teamwork, and building impactful technology-driven solutions in competitive environments. I enjoy transforming ideas into interactive and user-friendly applications while continuously strengthening my technical expertise in React, HTML, CSS, Bootstrap, Python, MySQL, and modern UI/UX design. Along with technical knowledge, I possess strong leadership, communication, and collaboration skills, enabling me to work effectively within teams, manage responsibilities confidently, and contribute positively to project development and execution.
+                I’m Dev Dharrshan S, a passionate and dedicated aspiring software developer with a strong enthusiasm for web development, modern technologies, and innovative digital solutions. As a Smart India Hackathon (SIH) Finalist, I have gained valuable experience in problem-solving, teamwork, and building impactful technology-driven solutions in competitive environments. I enjoy transforming ideas into interactive and user-friendly applications while continuously strengthening my technical expertise in React, HTML, CSS, Bootstrap, Python, MySQL, and modern UI/UX design. Along with technical knowledge, I possess strong leadership, communication, and collaboration skills, enabling me to work effectively within teams, manage responsibilities confidently, and contribute positively to project development and execution.
               </p>
               <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
                 I am deeply interested in building technology that creates real-world impact and enhances user experiences. Over time, I have worked on multiple projects ranging from responsive web platforms to innovative solutions such as Hybrid Renewable Energy Orchestration systems and sales data analysis platforms. I believe that combining creativity, consistency, leadership, and technical knowledge is the key to building meaningful digital products. I continuously explore emerging technologies, improve my problem-solving abilities, and challenge myself through innovation, teamwork, and continuous learning. My goal is to grow into a skilled full-stack developer and technology professional who contributes to future-focused projects while creating impactful and inspiring digital experiences.
@@ -762,19 +730,20 @@ export function About() {
               <PremiumCard delay={0.25} accent="blue">
                 <div className="grid sm:grid-cols-2 gap-3">
                   {[
-                    { label: 'Name', value: 'ROSHINI M' },
-                    { label: 'Father Name', value: 'MAGUDEESWARAN' },
-                    { label: 'Mother Name', value: 'BANU' },
-                    { label: 'DOB', value: '22.01.2006' },
-                    { label: 'Birth Place', value: 'UDUMALAIPETTAI' },
-                    { label: 'Phone No', value: '+91 6374732628' },
-                    { label: 'College Mail ID', value: 'roshinim.23csd@kongu.edu' },
-                    { label: 'Personal Mail ID', value: 'roshinimagudeeswaran@gmail.com' },
-                    { label: 'HSC Percentage', value: '90.67' },
-                    { label: 'SSLC', value: 'pass' },
+                    { label: 'Name', value: 'DEV DHARRSHAN S' },
+                    { label: 'Father Name', value: 'SAKTHI BABU S' },
+                    { label: 'Mother Name', value: 'SUGANYA' },
+                    { label: 'DOB', value: '19.07.2004' },
+                    { label: 'Birth Place', value: 'VIRUDHUNAGAR' },
+                    { label: 'Phone No', value: '9363534589' },
+                    { label: 'College Mail ID', value: 'devdharrshans.23csd@kongu.edu' },
+                    { label: 'Personal Mail ID', value: 'devdharrshan40@gmail.com' },
+                    { label: 'HSC Percentage', value: '69.4' },
+                    { label: 'SSLC Percentage', value: '84.2' },
+                    { label: 'JEE Mains', value: '79.477 PERCENTILE' },
                     { label: 'College', value: 'KONGU ENGINEERING COLLEGE' },
-                    { label: 'Current CGPA', value: '7.97' },
-                    { label: 'Languages Known', value: 'ENGLISH, TAMIL, GERMAN (classroom-level)' },
+                    { label: 'Current CGPA', value: '7.64' },
+                    { label: 'Languages Known', value: 'ENGLISH, TAMIL, HINDI' },
                   ].map((detail) => (
                     <div
                       key={detail.label}
